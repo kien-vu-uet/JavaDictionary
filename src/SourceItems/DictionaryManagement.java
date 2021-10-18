@@ -14,41 +14,43 @@ import java.sql.*;
 //lưu dạng UTF-8
 public class DictionaryManagement {
 	
-	public static void insertFromCommandline() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter Number of Word:");
-		int scale = sc.nextInt();
-		for (int i = 0; i < scale; ++i) {
-			System.out.println("Enter new Word:");
-			String w = sc.nextLine();
-			String d = sc.nextLine();
-			Dictionary.addWord(new Word(w,d));
-		}
-	}
+	/* Dismiss Since We Develope New Version. 
+	 * SQLite Database took place of File input.
+	 */
+//	public static void insertFromCommandline() {
+//		Scanner sc = new Scanner(System.in);
+//		System.out.println("Enter Number of Word:");
+//		int scale = sc.nextInt();
+//		for (int i = 0; i < scale; ++i) {
+//			System.out.println("Enter new Word:");
+//			String w = sc.nextLine();
+//			String d = sc.nextLine();
+//			Dictionary.addWord(new Word(w,d));
+//		}
+//	}
 	
 	/* Dismiss Since We Develope New Version. 
 	 * SQLite Database took place of File input.
 	public static void insertFromFile() {;}
 	*/
 	
-	public static void dictionaryLookup() {
+	public static Word dictionaryLookup() {
 		System.out.println("Enter The Word Need To Lookup: ");
 		Scanner sc = new Scanner(System.in);
 		String w = sc.nextLine();
-		SQLiteJDBC.queryLookup(w);
+		return SQLiteJDBC.queryLookup(w);
 	}
 	
 	public static void addWord() {
 		
-		String w, d, t, p;
-		System.out.println("Enter Word, Description, Type, Pronounce Need to Add.");
+		String w, d, p;
+		System.out.println("Enter Word, Description, Pronounce Need to Add.");
 		System.out.println("if Any Part You Ignored, Typing 'NONE'.");
 		Scanner sc = new Scanner(System.in);
 		w = sc.nextLine();
 		d = sc.nextLine();
-		t = sc.nextLine();
 		p = sc.nextLine();
-		SQLiteJDBC.insertToDatabase(new Word(w,t,d,p));
+		SQLiteJDBC.insertToDatabase(new Word(w, d, p));
 	}
 	
 	public static void editWord() {

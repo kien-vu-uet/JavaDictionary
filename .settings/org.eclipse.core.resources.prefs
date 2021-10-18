@@ -1,6 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/DictionaryCommandline.java=UTF-8
-encoding//src/SourceItems/Dictionary.java=UTF-8
 encoding//src/SourceItems/DictionaryManagement.java=UTF-8
+encoding//src/SourceItems/ReadText.java=UTF-8
 encoding//src/SourceItems/SQLiteJDBC.java=UTF-8
 encoding//src/SourceItems/Word.java=UTF-8

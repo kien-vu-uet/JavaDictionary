@@ -1,6 +1,5 @@
 package SourceItems;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -29,23 +28,24 @@ public class SQLiteJDBC {
 	      }
 	      	 System.out.println("Records created successfully");
 		}
-	
-	public static void queryAllWordRecorded() {
+	/*
+	public static String queryAllWordRecorded() {
 		 Connection c = null;
 		 Statement stmt = null;
+		 String res = "";
 		 try {
 			  Class.forName("org.sqlite.JDBC");
 	          c = DriverManager.getConnection("jdbc:sqlite:dictionary.db");
 		      c.setAutoCommit(false);
 		      stmt = c.createStatement();
 		      ResultSet rs = stmt.executeQuery("SELECT id, word, description FROM EngToVie;");
-		      System.out.printf("%8s | %-50s | %-5s %n", "No", "English", "Vietnamese");
+		      res = res + String.format("%8s | %-50s | %-5s %n", "No", "English", "Vietnamese");
 		      
 		      while (rs.next()) {
 		         int id = rs.getInt("id");
 		         String w = rs.getString("word");
 		         String d = rs.getString("description");
-		         System.out.printf("%8d | %-50s | %-5s %n", id, w, d);
+		         res = res + String.format("%8d | %-50s | %-5s %n", id, w, d);
 		      }
 		      rs.close();
 		      stmt.close();
@@ -55,9 +55,11 @@ public class SQLiteJDBC {
 		    System.exit(0);
 		   }
 		   	// System.out.println("Operation Show All done successfully");
+		 return  res;
 	}
-	
-	public static void queryLookup(String w) {
+	*/
+	public static Word queryLookup(String w) {
+		Word res;
 		Connection c = null;
 		Statement stmt = null;
 		try {
@@ -66,24 +68,20 @@ public class SQLiteJDBC {
 		     c.setAutoCommit(false);
 		     stmt = c.createStatement();
 		     ResultSet rs = stmt.executeQuery("SELECT word, description, pronounce FROM EngToVie Where word ='" + w + "';" );
-		     System.out.printf("%20s | %-20s | %-25s %n", "Word English", "Word Pronounce", "Word Description");
-		     String p = rs.getString("pronounce");
-		     String ww = rs.getString("word");
-		     String d = rs.getString("description");
-		     System.out.printf("%20s | %-20s | %-25s %n", ww, p, d);
+		     res = new Word(rs.getString("word"), rs.getString("description"), rs.getString("pronounce"));
 		     rs.close();
 		     stmt.close();
 		     c.close(); 
 		} catch (Exception e) {
-			System.out.println("Not Found !");
-			return;
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+		    System.exit(0);
 		}
+		return new Word("No Result Found");
 	}
 	
-	public static void patternSearch() {
-		System.out.println("Enter the Pattern Need to Search:");
-		Scanner sc = new Scanner(System.in);
-		String pat = sc.nextLine();
+	public static String patternSearch(String pat) {
+		// System.out.println("Enter the Pattern Need to Search:");
+		String res = "";
 		Connection c = null;
 		Statement stmt = null;
 		 try {
@@ -91,13 +89,14 @@ public class SQLiteJDBC {
 	          c = DriverManager.getConnection("jdbc:sqlite:dictionary.db");
 		      c.setAutoCommit(false);
 		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery("SELECT id, word, description FROM EngToVie Where word LIKE '" + pat + "%';");
-		      System.out.printf("%8s | %-50s | %-5s %n", "No", "English", "Vietnamese");
+		      ResultSet rs = stmt.executeQuery("SELECT word FROM EngToVie Where word LIKE '" + pat + "%';");
+		      // System.out.printf("%8s | %-50s | %-5s %n", "No", "English", "Vietnamese");
 		      while (rs.next()) {
-		         int id = rs.getInt("id");
+		         // int id = rs.getInt("id");
 		         String w = rs.getString("word");
-		         String d = rs.getString("description");
-		         System.out.printf("%8d | %-50s | %-5s %n", id, w, d);
+		         res = w + "\n";
+		         // String d = rs.getString("description");
+		         // System.out.printf("%8d | %-50s | %-5s %n", id, w, d);
 		      }
 		      rs.close();
 		      stmt.close();
@@ -107,6 +106,7 @@ public class SQLiteJDBC {
 		    System.exit(0);
 		   }
 		   	// System.out.println("Operation Searching done successfully");
+		 return res;
 	}
 	
 	public static void DatabaseToTextFile() {

@@ -28,30 +28,35 @@ public class DictionaryCommandline {
 		// DictionaryManagement.editWord();
 		// DictionaryManagement.deleteWord();
 		// DictionaryManagement.dictionaryLookup();
+		ReadText.speech("The King Kong has destroy many city");
 	}
 	
+	/*
 	private static void showAllWords() {
 		SQLiteJDBC.queryAllWordRecorded();
 	}
+	*/
 	
+	/*
 	public static void dictionaryBasic() {
 		;
 		// showAllWords();
 		DictionaryCommandline.showAllWords();
 		// insertFromCommandline();
 	}
-	
+	*/
+	/*
 	public static void dictionaryAdvanced() {
 		// Method 1: showAllWords();
 		DictionaryCommandline.showAllWords();
-		
 		// insertFromFile(); -- Dismissed Already.
 		
 		// Method 3: dictionaryLookup();
 		DictionaryManagement.dictionaryLookup();
 	}
-	
-	public static void dictionarySearcher() {
-		SQLiteJDBC.patternSearch();
+	*/
+	// Developing GUI version.
+	public static String dictionarySearcher(String pat) {
+		return SQLiteJDBC.patternSearch(pat);
 	}
 }

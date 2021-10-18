@@ -4,7 +4,6 @@ package SourceItems;
 public class Word {
 	private String word_target;
 	private String word_explain;
-	private String word_type;
 	private String word_pronounce;
 
 	public void setTarget(String w) {
@@ -31,40 +30,28 @@ public class Word {
 		return this.word_explain;
 	}
 
-	public void setType(String t) {
-		this.word_type = t;
-	}
-
-	public String getType() {
-		return this.word_type;
-	}
-
-	public Word(String w, String t, String m, String p) {
+	public Word(String w, String m, String p) {
 		this.word_target = w;
-		this.word_explain = t + ": " + m;
-		this.word_type = t;
+		this.word_explain = m;
 		this.word_pronounce = p;
 	}
 
 	public Word() {
-		this.word_target = "...";
-		this.word_explain = "...: ...";
-		this.word_type = "...";
-		this.word_pronounce = "...";
+		this.word_target = "";
+		this.word_explain = "";
+		this.word_pronounce = "";
 	}
 
 	public Word(String w) {
 		this.word_target = w;
-		this.word_explain = "...: ...";
-		this.word_type = "...";
-		this.word_pronounce = "...";
+		this.word_explain = "";
+		this.word_pronounce = "";
 	}
 
 	public Word(String w, String d) {
 		this.word_target = w;
 		this.word_explain = d;
-		this.word_type = "...";
-		this.word_pronounce = "...";
+		this.word_pronounce = "";
 	}
 }
 

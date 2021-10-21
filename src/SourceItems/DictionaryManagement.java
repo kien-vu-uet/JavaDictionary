@@ -1,14 +1,6 @@
 package SourceItems;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Scanner;
-import java.io.FileWriter;
 import java.sql.*;
 
 //lưu dạng UTF-8

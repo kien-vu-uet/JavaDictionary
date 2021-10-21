@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.sql.*;
 
 //lưu dạng UTF-8
+// test 1
 public class DictionaryManagement {
 	
 	/* Dismiss Since We Develope New Version. 
